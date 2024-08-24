@@ -1,0 +1,90 @@
+{% load static %}
+{% load custom_filters %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="icon" type="image/x-icon" href="{% static 'PassApp/img/nhpaicon.ico' %}">
+    <link rel="apple-touch-icon" href="{% static 'PassApp/img/apple-touch-icon.png' %}">
+    <title>NHPA – Student Dashboard</title>
+    <link rel="stylesheet" href="{% static 'PassApp/css/studentdashboard.css' %}">
+    <script src="{% static 'PassApp/js/numbervalidation.js' %}" defer></script>
+    <script>
+        window.locations = {{ locations|safe }};
+    </script>
+    <script src="{% static 'PassApp/js/studentdashboard.js' %}" defer></script>
+</head>
+<body>
+    <div class="app-container">
+        <h1><span class="title-nova">NOVA</span> <span class="title-pass">PASS</span> <span class="title-app">APP</span></h1>
+        <h2>Welcome, {{ request.user.get_full_name }}</h2>
+        <h3 id="current-time">Today is {% now "l, F j" %}</h3>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="building-from">Building From:</label>
+                <select id="building-from" name="building-from">
+                    <option>Select a building</option>
+                    {% for building in locations.keys %}
+                        <option value="{{ building }}" {% if submitted_data.building_from == building %}selected{% endif %}>{{ building }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="room-label" for="room-from">Room From:</label>
+                <select class="room-select" id="room-from" name="room-from">
+                    <option>Select a room</option>
+                    {% if submitted_data.building_from in locations %}
+                        {% for room in locations|get_item:submitted_data.building_from %}
+                            <option value="{{ room }}" {% if submitted_data.room_from == room %}selected{% endif %}>{{ room }}</option>
+                        {% endfor %}
+                    {% endif %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="building-to">Building To:</label>
+                <select id="building-to" name="building-to">
+                    <option>Select a building</option>
+                    {% for building in locations.keys %}
+                        <option value="{{ building }}" {% if submitted_data.building_to == building %}selected{% endif %}>{{ building }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="room-label" for="room-to">Room To:</label>
+                <select class="room-select" id="room-to" name="room-to">
+                    <option>Select a room</option>
+                    {% if submitted_data.building_to in locations %}
+                        {% for room in locations|get_item:submitted_data.building_to %}
+                            <option value="{{ room }}" {% if submitted_data.room_to == room %}selected{% endif %}>{{ room }}</option>
+                        {% endfor %}
+                    {% endif %}
+                </select>
+            </div>
+
+            <p>Allotted Time In Minutes</p>
+            <div class="time-buttons">
+                {% for time in valid_times %}
+                    <button type="button" class="time-btn {% if submitted_data.selected_time == time|stringformat:"s" %}active{% endif %}" onclick="selectTime(this)">{{ time }}</button>
+                {% endfor %}
+            </div>
+            <input type="hidden" id="selected-time" name="selected-time" value="{{ submitted_data.selected_time }}">
+            
+            <div class="teacher-pin">
+                <label for="teacher-pin">Teacher Pin</label>
+                <input type="number" inputmode="numeric" id="teacher-pin" name="teacher-pin" style="text-security:disc; -webkit-text-security:disc;" autocomplete="off" onkeypress="return isNumberKey(event)">
+            </div>
+
+            <button type="submit" class="submit-button">Submit</button>
+        </form>
+        {% if error_message %}
+            <div class="errormsg">{{ error_message }}</div>
+        {% endif %}
+        <p><a href="{% url 'passapp-logout' %}"> Switch user? </a></p>
+    </div>
+</body>
+</html>

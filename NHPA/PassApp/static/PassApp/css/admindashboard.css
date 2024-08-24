@@ -1,0 +1,96 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #333;
+    color: white;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.app-container {
+    width: 90%;
+    max-width: 390px;
+    padding: 20px;
+    background-color: #222;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.passes {
+    margin-left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    background-color: #1b1b1b;
+    border-radius: 8px;
+    padding: 10px;
+    padding-top: 0px;
+}
+
+.pass-categories, .pass-display {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.pass-display {
+    background-color: #2d2d2d;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.pass-display.swiped {
+    transform: translateX(-100%);
+}
+
+.pass-categories h3, .pass-display p {
+    margin: 0;
+    text-align: center;
+}
+
+.pass-display.active {
+    background-color: rgba(76, 175, 80, 0.3); /* Slightly green */
+}
+
+.pass-display.expired {
+    background-color: rgba(244, 67, 54, 0.3); /* Slightly red */
+}
+
+.pass-label {
+    text-align: center;
+    position: relative;
+    top: 10px;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.title-nova { color: #4CAF50; }
+.title-pass { color: #FFD700; }
+.title-app { color: white; }
+
+h2, h3 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+h3 {
+    margin-top: -10px;
+}
+
+a {
+    margin-top: 5px;
+    display: block;
+}
+
+a:link, a:visited  {
+    color: rgb(16, 155, 39);
+    text-decoration: none;
+}

@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="icon" type="image/x-icon" href="{% static 'PassApp/img/nhpaicon.ico' %}">
+    <link rel="apple-touch-icon" href="{% static 'PassApp/img/apple-touch-icon.png' %}">
+    <title>NHPA – Login</title>
+    <link rel="stylesheet" href="{% static 'PassApp/css/login.css' %}">
+    <script src="{% static 'PassApp/js/numbervalidation.js' %}" defer></script>
+    <noscript>
+        <div class="noscript">
+            <strong>Warning:</strong> JavaScript is disabled in your browser. Please enable JavaScript to use all features of this site.
+        </div>
+    </noscript>
+</head>
+<body>
+    <div class="login-container">
+        <h1><span class="title-nova">NOVA</span> <span class="title-pass">PASS</span> <span class="title-part">APP</span></h1>
+        <h2>Login</h2>
+        <p>Please sign in to continue.</p>
+        <form method="post">
+            {% csrf_token %}
+            <label for="userid">User ID</label>
+            <input type="number" inputmode="numeric" autocomplete="off" id="userid" name="userid" placeholder="Enter Identifier" onkeypress="return isNumberKey(event)">
+
+            <button type="submit">Login</button>
+        </form>
+
+        {% if error_message %}
+            <div class="errormsg">{{ error_message|safe }}</div>
+        {% endif %}
+    </div>
+    <p class="credits">Created by Ryan Samuels</p>
+</body>
+</html>

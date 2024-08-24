@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <link rel="icon" type="image/x-icon" href="{% static 'PassApp/img/nhpaicon.ico' %}">
+        <link rel="apple-touch-icon" href="{% static 'PassApp/img/apple-touch-icon.png' %}">
+        <title>NHPA – Student Pass</title>
+        <link rel="stylesheet" href="{% static 'PassApp/css/passscreen.css' %}">
+        <script src="{% static 'PassApp/js/getpasstime.js' %}" defer></script>
+   </head>
+   <body>
+        <div class="app-container">
+            <h1><span class="title-nova">NOVA</span> <span class="title-pass">PASS</span> <span class="title-app">APP</span></h1>
+            {% if error_message %}
+                <div class="errormsg">{{ error_message }}</div>
+            {% endif %}
+            {% for pass in passes %}
+                <div class="pass-stats">
+                    <div class="user-stats">
+                        <div class="user-stat"><span class="label">Start Time:</span> <span class="value">{{ pass.start_time }}</span></div>
+                        <div class="user-stat"><span class="label">Student Name:</span> <span class="value">{{ pass.student.get_full_name }}</span></div>
+                        <div class="user-stat"><span class="label">Building From:</span> <span class="value">{{ pass.building_from }}</span></div>
+                        <div class="user-stat"><span class="label">Room From:</span> <span class="value">{{ pass.room_from }}</span></div>
+                        <div class="user-stat"><span class="label">Building To:</span> <span class="value">{{ pass.building_to }}</span></div>
+                        <div class="user-stat"><span class="label">Room To:</span> <span class="value">{{ pass.room_to }}</span></div>
+                        <div class="user-stat"><span class="label">Teacher:</span> <span class="value">{{ pass.staff.get_full_name }}</span></div>
+                    </div>                    
+                    <label class="timer" id="timer-{{ pass.id }}">0m 00s</label>
+                </div>
+                <form method="post" action="{% url 'passapp-endpass' pass.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="submit-button">End Pass</button>
+                </form>
+            {% endfor %}
+        </div>
+    </body>
+</html>

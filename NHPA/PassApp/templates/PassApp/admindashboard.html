@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="icon" type="image/x-icon" href="{% static 'PassApp/img/nhpaicon.ico' %}">
+    <link rel="apple-touch-icon" href="{% static 'PassApp/img/apple-touch-icon.png' %}">
+    <title>NHPA – Admin Dashboard</title>
+    <link rel="stylesheet" href="{% static 'PassApp/css/admindashboard.css' %}">
+    <script src="{% static 'PassApp/js/admindashboard.js' %}" defer></script>
+</head>
+<body>
+    <div class="app-container">
+        <h1><span class="title-nova">NOVA</span> <span class="title-pass">PASS</span> <span class="title-app">APP</span></h1>
+        <h2>Welcome, {{request.user.get_full_name}}</h2>
+        <h3 id="current-time">Today is {% now "l, F j" %}</h3>
+        <div id="passes-container" class="passes">
+            <h2><span class="pass-label">All Passes</span></h2>
+            <div class="pass-categories">
+                <h3>Name</h3>
+                <h3>Start Time</h3>
+                <h3>Duration</h3>
+                <h3>To</h3>
+                <h3>Status</h3>
+            </div>
+            <h2> Loading Passes... </h2>
+        </div>
+        <a href="{% url 'passapp-download' %}">Download Passes CSV</a>
+        <a href="{% url 'passapp-logout' %}">Switch user?</a>
+    </div>
+</body>
+</html>

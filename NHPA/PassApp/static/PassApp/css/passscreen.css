@@ -1,0 +1,102 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #333;
+    color: white;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ensure full height */
+}
+
+.app-container {
+    width: 90%;
+    max-width: 390px;
+    padding: 20px;
+    background-color: #222;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.title-nova { color: #4CAF50; }
+.title-pass { color: #FFD700; }
+.title-app { color: white; }
+
+h2, h3 {
+    margin-bottom: 20px;
+}
+
+.user-stats {
+    margin-bottom: 20px;
+}
+
+.user-stat {
+    padding: 5px;
+    margin-bottom: 5px;
+    position: relative;
+    text-align: left;
+}
+
+.user-stat:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-bottom: 1px solid #333; 
+}
+
+.label {
+    font-weight: bold;
+    color: #FFD700;
+    display: inline-block;
+}
+
+.value {
+    color: white;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.submit-button {
+    width: 100%;
+    background-color: #FFD700;
+    color: black;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.submit-button:hover {
+    background-color: #ccac00;
+}
+
+.timer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: xx-large;
+}
+
+.timer.expired {
+    color: red;
+}
+
+.errormsg {
+    background-color: #d8000c;
+    color: white;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 4px;
+}

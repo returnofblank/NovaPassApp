@@ -1,4 +1,4 @@
-Note: This is a publicized version of a prviate Git project, I took out some sensitive information. Don't expect the best documentation. Here be dragons.
+Note: This is a publicized version of a private Git project, I took out some sensitive information. Don't expect the best documentation. Here be dragons.
 
 ## Project Deployment and Development Instructions
 

@@ -52,14 +52,3 @@ Note: This is a publicized version of a private Git project, I took out some sen
    ```
 4. **Setup Web Server**:
    - Use a web server like NGINX or Caddy to serve static files.
-
-### Contributing to the Project
-To ensure a smooth workflow and prevent issues, please follow these steps:
-
-1. **Create a New Branch:** Start by creating a new branch for your changes. This keeps the main branch clean and stable.
-2. **Make Your Changes:** Develop and test your changes in your new branch.
-3. **Open a Pull Request:** Once your changes are complete and tested, open a pull request to merge your branch into the main branch. This allows for code review and discussion before the changes are integrated.
-
-By following this process, we can minimize regressions and maintain the quality of the project.
-
-Do not commit directly into the main branch.
